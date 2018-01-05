@@ -96,6 +96,10 @@ namespace FaxOut.Controllers
                         });
 
                         Context.Update(fax, externalId);
+
+                        model.WarningMessage = string.Format("This fax is listed as: \"{0}\". Refresh the page to update the status.", "creating");
+
+                        return View(model);
                     }
 
                     var faxInfo = pc.GetFaxInfo(fax.ExternalId);
