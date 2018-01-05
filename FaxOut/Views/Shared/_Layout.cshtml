@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fax</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    @*<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>*@
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    @*<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-hashchange/1.3/jquery.ba-hashchange.min.js"></script>*@
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .m-top-25 { margin-top: 25px; }
+        .m-top-50 { margin-top: 50px; }
+        .m-bottom-25 { margin-bottom: 25px; }
+        .m-bottom-50 { margin-bottom: 50px; }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: solid 1px #333;
+        }
+    </style>
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Fax", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="container body-content m-bottom-50">
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="@Url.Action("index")">
+                    <h1 style="text-align: center;"><i class="fa fa-fax" aria-hidden="true"></i></h1>
+                </a>
+            </div>
+        </div>
+        @RenderBody()
+        <hr style="margin-top: 50px;" />
+        <footer>
+            <p style="float: left;">&copy; @DateTime.Now.Year - <a href="https://twitter.com/dochoffiday">@@dochoffiday</a> (style shamelessly stolen from <a href="https://bootswatch.com/paper/" target="_blank">bootswatch</a>)</p>
+            <p style="float: right;">@Html.Action("stats", "home")</p>
+        </footer>
+    </div>
+</body>
+</html>

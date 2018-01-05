@@ -1,0 +1,20 @@
+﻿[
+  {
+    "slug": "lloyd-smucker",
+    "name": "Honorable Lloyd Smucker",
+    "group": "PA CONGRESSMEN",
+    "fax":  ""
+  },
+  {
+    "slug": "pat-toomey",
+    "name": "Honorable Pat Toomey",
+    "group": "PA SENATOR",
+    "fax":  "2022280284"
+  },
+  {
+    "slug": "bob-casey",
+    "name": "Honorable Bob Casey",
+    "group": "PA SENATOR",
+    "fax":  "2022280604"
+  }
+]

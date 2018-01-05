@@ -1,0 +1,68 @@
+﻿@model List<Contact>
+
+<div class="row" >
+    <div class="col-md-5 m-top-25">
+        <div class="well">
+            <select id="contact" class="selectpicker" data-live-search="true" data-width="100%">
+                <option id="contact-other" value="other" data-name="" data-number="">Other</option>
+                @foreach (var group in Model.Select(p => p.Group).Distinct().OrderBy(p => p))
+                {
+                    <optgroup label="@group">
+                        @foreach (var contact in Model.Where(p => p.Group == group).OrderBy(p => p.Name))
+                        {
+                            <option data-name="@contact.Name" data-number="@contact.Fax" data-slug="@contact.Slug" data-subtext="@(!string.IsNullOrWhiteSpace(contact.Fax) ? ModelHelper.PhoneFormat(contact.Fax) : "")" @Html.Raw(string.IsNullOrWhiteSpace(contact.Fax) ? "disabled" : "")>@contact.Name</option>
+                        }
+                    </optgroup>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-md-7 m-top-25">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form>
+                    <div id="errors" class="alert alert-danger" style="display: none;"></div>
+
+                    <div class="form-group">
+                        <input class="form-control input-lg" type="text" id="to" placeholder="Honorable Joe Doe" value="@Request["to"]" />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-lg" type="text" id="number" placeholder="5555555555" maxlength="10" value="@Request["number"]" />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-lg" type="text" id="subject" placeholder="Re: HR ZZZZ [or something like that]" value="@Request["subject"]" />
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="20" id="message" placeholder="Dear [their name here],
+                                  
+My name is [your name here], from Lancaster, PA, 17603. As a constituent of yours, I urge you to oppose HR ZZZZ.
+
+I believe this bill will [INSERT REASONS WHY YOU OPPOSE].
+
+As a husband and a father, and a citizen of this great county, this bill is important to me because of [PERSONAL REASONS WHY YOU OPPOSE].
+                  
+I will be thinking of this issue come the next election cycle, so please, oppose HR ZZZZ.
+                                                  
+Thank you,
+[Your name here]
+333 N North Street
+717-555-5555
+email@email.com">@Request["message"]</textarea>
+                    </div>
+
+                    <button id="btn-preview" class="btn btn-lg btn-primary m-top-25">Preview<span id="spinner" style="display: none;">&nbsp;&nbsp;<i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i></span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="preview" class="row" style="display: none;">
+    <div class="col-xs-12">
+        <iframe id="iframe"></iframe>
+
+        <button id="btn-send" class="btn btn-lg btn-primary m-top-25">Send</button>
+    </div>
+</div>
+
+<script src="@Url.Content("~/scripts/app.js")"></script>

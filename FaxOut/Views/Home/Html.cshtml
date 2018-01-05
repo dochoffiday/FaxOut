@@ -1,0 +1,21 @@
+﻿@model Fax
+@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<body>
+
+    <div style="padding: 25px;">
+        <p>
+            @Model.CreatedOnUtc.ToString("D")<br />
+            @Model.Name
+        </p>
+
+        <h3 style="text-align: center;">@Model.Subject</h3>
+
+        <p style="white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;">@Html.Raw(CommonMark.CommonMarkConverter.Convert(Model.Text))</p>
+    </div>
+
+</body>
+</html>

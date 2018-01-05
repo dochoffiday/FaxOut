@@ -1,0 +1,6 @@
+﻿@model Stats
+@{ 
+    Layout = null;
+}
+
+Faxes: @Model.Faxes | Pages: @Model.Pages | Cost: @ModelHelper.CentsToDollars(Model.Cents)
