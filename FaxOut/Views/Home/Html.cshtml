@@ -4,17 +4,19 @@
 }
 <!DOCTYPE html>
 <html>
+<head>
+    <style>
+        p {
+            white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;
+        }
+    </style>
+</head>
 <body>
 
     <div style="padding: 25px;">
-        <p>
-            @Model.CreatedOnUtc.ToString("D")<br />
-            @Model.Name
-        </p>
-
+        <p style="margin-top: 0;">@Model.CreatedOnUtc.ToString("D")<br />@Model.Name</p>
         <h3 style="text-align: center;">@Model.Subject</h3>
-
-        <p style="white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;">@Html.Raw(CommonMark.CommonMarkConverter.Convert(Model.Text))</p>
+        @Html.Raw(CommonMark.CommonMarkConverter.Convert(Model.Text))
     </div>
 
 </body>
