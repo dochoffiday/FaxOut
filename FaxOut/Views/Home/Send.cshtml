@@ -28,7 +28,11 @@
 
         <br /><br />
 
-        <iframe id="iframe" src="@Url.Action("html", new { id = Model.Id })"></iframe>
+        <div class="panel panel-default">
+            <div class="panel-body" style="padding: 0;">
+                <iframe id="iframe" src="@Url.Action("html", new { id = Model.Id })"></iframe>
+            </div>
+        </div>
     </div>
 </div>
 

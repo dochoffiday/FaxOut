@@ -37,7 +37,7 @@
                         <input class="form-control input-lg" type="text" id="subject" placeholder="Re: HR ZZZZ [or something like that]" value="@Request["subject"]" />
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="20" id="message" placeholder="Dear [their name here],
+                        <textarea class="form-control" rows="18" id="message" placeholder="Dear [their name here],
                                   
 My name is [your name here], from Lancaster, PA, 17603. As a constituent of yours, I urge you to oppose HR ZZZZ.
 
@@ -63,7 +63,11 @@ email@email.com">@Request["message"]</textarea>
 
 <div id="preview" class="row" style="display: none;">
     <div class="col-xs-12">
-        <iframe id="iframe"></iframe>
+        <div class="panel panel-default">
+            <div class="panel-body" style="padding: 0;">
+                <iframe id="iframe"></iframe>
+            </div>
+        </div>
 
         <button id="btn-send" class="btn btn-lg btn-primary m-top-25">Send</button>
     </div>
