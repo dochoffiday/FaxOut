@@ -16,7 +16,15 @@ namespace FaxOut
         {
             // Code that runs on application startup
             //AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+
+        protected void Application_BeginRequest(Object sender, EventArgs e)
+        {
+            if (!HttpContext.Current.Request.IsSecureConnection && !HttpContext.Current.Request.IsLocal)
+            {
+                Response.Redirect("https://" + Request.ServerVariables["HTTP_HOST"] + HttpContext.Current.Request.RawUrl);
+            }
         }
     }
 }
