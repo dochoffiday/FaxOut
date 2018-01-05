@@ -19,12 +19,13 @@ namespace FaxOut
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
-        protected void Application_BeginRequest(Object sender, EventArgs e)
+        protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            if (!HttpContext.Current.Request.IsSecureConnection && !HttpContext.Current.Request.IsLocal)
-            {
-                Response.Redirect("https://" + Request.ServerVariables["HTTP_HOST"] + HttpContext.Current.Request.RawUrl);
-            }
+            if (HttpContext.Current.Request.IsLocal) return;
+            if (HttpContext.Current.Request.IsSecureConnection) return;
+            if (string.Equals(HttpContext.Current.Request.Headers["X-Forwarded-Proto"], "https", StringComparison.InvariantCultureIgnoreCase)) return;
+
+            Response.Redirect("https://" + Request.ServerVariables["HTTP_HOST"] + HttpContext.Current.Request.RawUrl);
         }
     }
 }
