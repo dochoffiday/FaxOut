@@ -118,7 +118,7 @@ namespace FaxOut.Controllers
                 }
                 catch (Exception ex)
                 {
-                    model.ErrorMessage = ex.Message;
+                    model.ErrorMessage = ex.ToString();
                 }
 
                 return View(model);
