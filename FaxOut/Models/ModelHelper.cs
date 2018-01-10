@@ -6,7 +6,7 @@ namespace FaxOut
     {
         public static string PhoneFormat(string phone)
         {
-            return string.Format("{0:###-###-####}", int.Parse(phone));
+            return string.Format("{0:###-###-####}", long.Parse(phone));
         }
 
         public static string CentsToDollars(long cents)
