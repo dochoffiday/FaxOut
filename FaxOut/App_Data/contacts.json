@@ -16,5 +16,11 @@
     "name": "Honorable Bob Casey",
     "group": "PA SENATOR",
     "fax":  "2022280604"
+  },
+  {
+    "slug": "fcc",
+    "name": "Ajit Pai, FCC Chairman",
+    "group": "FEDERAL",
+    "fax":  "8664180232"
   }
 ]
