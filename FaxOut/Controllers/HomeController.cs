@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web.Mvc;
 
 namespace FaxOut.Controllers
@@ -11,6 +12,20 @@ namespace FaxOut.Controllers
     {
         public ActionResult Index()
         {
+            ThreadPool.QueueUserWorkItem(delegate
+            {
+                using (var Context = new DbContext())
+                {
+                    var pc = new Phaxio.Phaxio(PhaxioHelper.Key, PhaxioHelper.Secret);
+
+                    foreach (var pendingFax in Context.GetPendingFaxes())
+                    {
+                        var faxInfo = pc.GetFaxInfo(pendingFax.ExternalId);
+                        Context.Update(pendingFax, faxInfo.IsTest, faxInfo.PageCount, faxInfo.CostInCents, faxInfo.Status, faxInfo.CompletedAt);
+                    }
+                }
+            }, null);
+
             using (var Context = new DbContext())
             {
                 var model = Context.GetPublicContacts();
@@ -24,7 +39,10 @@ namespace FaxOut.Controllers
             using (var Context = new DbContext())
             {
                 var model = Context.GetStats(PhaxioHelper.IsTest);
-
+                
+                var pc = new Phaxio.Phaxio(PhaxioHelper.Key, PhaxioHelper.Secret);
+                model.Credit = pc.GetAccountStatus().Balance;
+                    
                 return View(model);
             }
         }

@@ -15,11 +15,6 @@ namespace FaxOut.Data
         
         public DbContext()
         {
-            if (HttpContext.Current.Request.IsLocal)
-            {
-
-            }
-
             Context = new Context.DataContext(ConfigurationManager.AppSettings["SQLSERVER_CONNECTION_STRING"]);
         }
 
@@ -37,14 +32,19 @@ namespace FaxOut.Data
         {
             var faxes = Context.Faxes.Count(p => p.ExternalIsTest == isTest && p.ExternalCompletedAt.HasValue);
             var pages = faxes > 0 ? Context.Faxes.Where(p => p.ExternalIsTest == isTest && p.ExternalCompletedAt.HasValue && p.ExternalPages.HasValue).Sum(p => p.ExternalPages.Value) : 0;
-            var cents = faxes > 0 ? Context.Faxes.Where(p => p.ExternalIsTest == isTest && p.ExternalCompletedAt.HasValue && p.ExternalCents.HasValue).Sum(p => p.ExternalCents.Value) : 0;
+            var spent = faxes > 0 ? Context.Faxes.Where(p => p.ExternalIsTest == isTest && p.ExternalCompletedAt.HasValue && p.ExternalCents.HasValue).Sum(p => p.ExternalCents.Value) : 0;
 
             return new Stats
             {
                 Faxes = faxes,
                 Pages = pages,
-                Cents = cents
+                Spent = spent
             };
+        }
+
+        public List<Fax> GetPendingFaxes()
+        {
+            return Context.Faxes.Where(p => p.ExternalId != null && !p.ExternalId.Equals(string.Empty) && !p.ExternalCompletedAt.HasValue).ToList();
         }
 
         public Fax GetFax(int id)

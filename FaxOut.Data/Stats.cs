@@ -4,6 +4,7 @@
     {
         public int Faxes;
         public int Pages;
-        public int Cents;
+        public int Spent;
+        public int Credit;
     }
 }
