@@ -2,20 +2,32 @@
   {
     "slug": "lloyd-smucker",
     "name": "Honorable Lloyd Smucker",
-    "group": "PA CONGRESSMEN",
+    "group": "US CONGRESSMEN (PA)",
     "fax":  "2022252013"
   },
   {
     "slug": "pat-toomey",
     "name": "Honorable Pat Toomey",
-    "group": "PA SENATOR",
+    "group": "US SENATOR (PA)",
     "fax":  "2022280284"
   },
   {
     "slug": "bob-casey",
     "name": "Honorable Bob Casey",
-    "group": "PA SENATOR",
+    "group": "US SENATOR (PA)",
     "fax":  "2022280604"
+  },
+  {
+    "slug": "mike-sturla",
+    "name": "P. Michael Sturla",
+    "group": "PA HOUSE OF REPRESENTATIVES",
+    "fax":  "7172957816"
+  },
+  {
+    "slug": "scott-martin",
+    "name": "Scott Martin",
+    "group": "PA STATE SENATE",
+    "fax":  "7172997798"
   },
   {
     "slug": "fcc",
