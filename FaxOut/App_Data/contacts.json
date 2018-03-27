@@ -30,6 +30,12 @@
     "fax":  "7172997798"
   },
   {
+    "slug": "tom-wolf",
+    "name": "Tom Wolf",
+    "group": "PA GOVERNOR",
+    "fax":  "7177728284"
+  },
+  {
     "slug": "fcc",
     "name": "Ajit Pai, FCC Chairman",
     "group": "FEDERAL",
