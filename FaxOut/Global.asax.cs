@@ -17,6 +17,8 @@ namespace FaxOut
             // Code that runs on application startup
             //AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
